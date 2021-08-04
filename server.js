@@ -22,7 +22,7 @@ app.use(cors());
 // Initialize the main project folder
 app.use(express.static('website'));
 
-const port=10000;
+const port=1472;
 // Spin up the server
 const server = app.listen(port,listening);
 
@@ -50,7 +50,7 @@ function getFakeData(req,res){
 }
 
 
-const pData=[];
+let pData=[];
 
 // Callback function to complete GET '/all'
 app.get('/all',function(req,res){
@@ -60,14 +60,13 @@ app.get('/all',function(req,res){
 
 // Post Route
 app.post('/addAnimal',function(req,res){
+    const wdata=req.body;
 
-    const newEntry={
-        animal:req.body.animal,
-        fact:req.body.fact,
-        fav:req.body.fav
-    }
-
-    pData.push(newEntry);
+        pData.temperature=wdata.temperature;
+        pData.date=wdata.date;
+        pData.ui=wdata.ui;
+    
+    
     res.send(pData);
     console.log(pData);
     //pdata.push(req.body);
