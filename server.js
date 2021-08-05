@@ -37,7 +37,7 @@ function listening() {
 // Initialize all route with a callback function
 var dateFormat = require('dateformat');
 var d= new Date();
-let projectData=[];
+let projectData={};
 
 // Callback function to complete GET '/all'
 app.get('/all',function(req,res){
@@ -60,7 +60,7 @@ app.post('/addAnimal',function(req,res){
  }
     
     res.send(projectData);
-    projectData.push(newEntry);
+    projectData=newEntry;
     console.log(projectData);
     
 }); 

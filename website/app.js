@@ -4,14 +4,14 @@
 
 const baseURL = "http://api.openweathermap.org/data/2.5/weather?zip=";
 const comma = ',';
-const apiKey = "&appid=313c0286de9914455968cabaeedf7a88";
+const apiKey = "&appid=313c0286de9914455968cabaeedf7a88&units=metric";
 
 document.getElementById('generate').addEventListener('click',perform);
 
 function perform(e){
   const zip=document.getElementById('zip').value;
   const countrycode=document.getElementById('countrycode').value;
-  const ui=document.getElementById('ui').value;
+  const ui=document.getElementById('feelings').value;
   const date = new Date();
   allData(baseURL,zip,comma,countrycode,apiKey)
   .then(function(nData){
@@ -24,8 +24,8 @@ function perform(e){
     updateUI()
   })
   setTimeout(function e(){
-  document.getElementById("labelt").innerHTML="Temperature (kelvin)";
-  let tempo = document.getElementById("t1").textContent;
+  document.getElementById("labelt").innerHTML="Temperature (Celcius)";
+  let tempo = document.getElementById("temp").textContent;
   document.getElementById("texting").textContent= tempo;
 },500);
 }
@@ -86,9 +86,9 @@ const postData = async ( url = '', data = {})=>{
     const request = await fetch('/all');
     try {
       const allData = await request.json();
-      document.getElementById('t1').innerHTML= allData[allData.length-1].temperature;
-      document.getElementById('t2').innerHTML= allData[allData.length-1].date;
-      document.getElementById('feelings').innerHTML= allData[allData.length-1].ui;
+      document.getElementById('temp').innerHTML= allData.temperature;
+      document.getElementById('date').innerHTML= allData.date;
+      document.getElementById('content').innerHTML= allData.ui;
 
     }
     catch(error){
