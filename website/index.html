@@ -1,27 +1,42 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="css.css">
     </head>
     <body>
-        <div>
-            <div>
-                <label for="zip">Zip Code: </p>
-                <input type="text" id="zip"></input>
-                <br>
-                <label for="countrycode">Country Code: </p>
-                <input type="text" id="countrycode"></input>
-                <br>
-                <p id="feeling">How do you be Feel:</p>
-                <input type="" id="ui"></input>
+        <div class="bigb">
+            <h1 class="titles">Your Daily Weather Report</h1>
+            <div class="side">
+                <div class= "box-1">
+                    <label for="zip" class="label1">Enter your Zip Code: </p>
+                    <input type="text" id="zip" placeholder="eg:94044" class="input1"></input>
+                    <br><br>
+                    <label for="countrycode" class="label2">Enter your Country Code: </p>
+                    <input type="text" id="countrycode" placeholder="eg:US" class="input2"></input>
+                    <br><br>
+                    <p id="feeling" class="label3">How do you be Feel today:</p>
+                    <textarea type="" id="ui" class="input3" rows=5 columns=17></textarea>
+                </div>
+                <div class='side1'>
+                        <label for="texting" id ="labelt" class="tte"></label>
+                        <textarea id="texting" class="temp" rows:"1" columns:"1"></textarea>
+                </div>
             </div>
-            
-            <label for='t1'> Temperature value: </label>
-            <textarea id="t1"></textarea>
-            <label for='t2'> Date value: </label>
-            <textarea id="t2"></textarea>
-            <label for='t3'> User Input Feeling: </label>
-            <textarea id="t3"></textarea>
-            <button id="generate">Sup</p>
+            <div id ='entryholder' class="box-2">
+                <div class="d0">
+                    <label for='t1' class="label4"> Temperature value </label>
+                    <textarea id="t1" class="input4"></textarea>
+                </div>
+                <div class="d1">
+                    <label for='t2' class="label5"> Date value </label>
+                    <textarea id="t2" class="input5" cols="30"></textarea>
+                </div>
+                <div class="d2">
+                    <label for='feelings' class="label6"> User Feeling </label>
+                    <textarea id="feelings" class="input6"></textarea>
+                </div>
+            </div>
+            <button id="generate" class="button1"> Weather Generate!</button>
 
         </div>
         <script src="app.js"></script>

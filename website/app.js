@@ -1,5 +1,7 @@
 //const {response}=require("express");
 
+//const { response } = require("express");
+
 const baseURL = "http://api.openweathermap.org/data/2.5/weather?zip=";
 const comma = ',';
 const apiKey = "&appid=313c0286de9914455968cabaeedf7a88";
@@ -15,10 +17,19 @@ function perform(e){
   .then(function(nData){
     postData('/addAnimal',{temperature:nData.main.temp,date:date,ui:ui})
   })
-  .then(
+  .then(function(newData){
+    projecGet('/all')
+  })
+  .then(function(dat){
     updateUI()
-  )
+  })
+  setTimeout(function e(){
+  document.getElementById("labelt").innerHTML="Temperature (kelvin)";
+  let tempo = document.getElementById("t1").textContent;
+  document.getElementById("texting").textContent= tempo;
+},500);
 }
+
 
 const allData = async (baseURL,zip,comma,countrycode,apiKey)=>{
     //console.log(data);
@@ -58,15 +69,27 @@ const postData = async ( url = '', data = {})=>{
       }
   }
 
-  
-  const updateUI = async()=>{
+  const projecGet = async(url)=>{
+    const request = await fetch(url);
+    try{
+      const dat=request.json();
+      console.log(dat);
+      return dat;
+    }
+    catch(error){
+      console.log("error",error);
+    }
+  }
+
+
+  const updateUI = async(url)=>{
     const request = await fetch('/all');
     try {
       const allData = await request.json();
-      console.log(allData);
-      document.getElementById('t1').innerHTML= allData.temperature;
-      document.getElementById('t2').innerHTML= allData.date;
-      document.getElementById('t3').innerHTML= allData.ui;
+      document.getElementById('t1').innerHTML= allData[allData.length-1].temperature;
+      document.getElementById('t2').innerHTML= allData[allData.length-1].date;
+      document.getElementById('feelings').innerHTML= allData[allData.length-1].ui;
+
     }
     catch(error){
       console.log('error',error);

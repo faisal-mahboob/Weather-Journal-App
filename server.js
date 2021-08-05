@@ -9,6 +9,7 @@ const app=express();
 
 /* Dependencies */
 const bodyParser = require('body-parser');
+var dateFormat = require('dateformat');
 
 /* Middleware*/
 //Here we are configuring express to use body-parser as middle-ware.
@@ -34,44 +35,33 @@ function listening() {
 }
 
 // Initialize all route with a callback function
-
-
-//Dummy endpoint
-
-const fakeData = {
-    animal:'lion',
-    fact:'lions are fun'
-}
-
-app.get('/fakeAnimalData',getFakeData);
-
-function getFakeData(req,res){
-    res.send(fakeData);
-}
-
-
-let pData=[];
+var dateFormat = require('dateformat');
+var d= new Date();
+let projectData=[];
 
 // Callback function to complete GET '/all'
 app.get('/all',function(req,res){
-    res.send(pData);
+    res.send(projectData);
 });
+
+app.get('/root',function(req,res){
+    res.send(moData);
+});
+
 
 
 // Post Route
 app.post('/addAnimal',function(req,res){
-    const wdata=req.body;
-
-        pData.temperature=wdata.temperature;
-        pData.date=wdata.date;
-        pData.ui=wdata.ui;
     
+ const newEntry={
+        temperature:req.body.temperature,
+        date:req.body.date,
+        ui:req.body.ui
+ }
     
-    res.send(pData);
-    console.log(pData);
-    //pdata.push(req.body);
-    //moData.push(req.body);
-    //res.send('post received');
-    //console.log(pdata);
-    //console.log(moData);
+    res.send(projectData);
+    projectData.push(newEntry);
+    console.log(projectData);
+    
 }); 
+
